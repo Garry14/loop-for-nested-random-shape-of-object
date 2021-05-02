@@ -34,28 +34,28 @@ const getImageSrc = (object, ke=1) => {
 
     // Try to search anything valur from The Random Nested Object
     const searchVal = "John Doe Nest Array 2"
-    
+
     if (typeof object !== "undefined") {
         if (object) {
-        for (let theProp=0; theProp < Object.keys(object).length; theProp++) {
-            // You can check the nodes by console.log here: console.log(typeof object[Object.keys(object)[theProp]], Object.keys(object)[theProp], 'ke => ', ke)
-            if (typeof object[Object.keys(object)[theProp]] === "object") {
-            ke ++
-            if (Array.isArray(object[Object.keys(object)[theProp]])) { 
-                if (object[Object.keys(object)[theProp]].length > 0) {
-                object[Object.keys(object)[theProp]].map(nd => {
-                    getImageSrc(nd, ke) 
-                })
-                }  
-            } else {
-                getImageSrc(object[Object.keys(object)[theProp]], ke)
+            for (let theProp=0; theProp < Object.keys(object).length; theProp++) {
+                // You can check the nodes by console.log here: console.log(typeof object[Object.keys(object)[theProp]], Object.keys(object)[theProp], 'ke => ', ke)
+                if (typeof object[Object.keys(object)[theProp]] === "object") {
+                    ke++
+                    if (Array.isArray(object[Object.keys(object)[theProp]])) { 
+                        if (object[Object.keys(object)[theProp]].length > 0) {
+                            object[Object.keys(object)[theProp]].map(nd => {
+                                getImageSrc(nd, ke) 
+                            })
+                        }  
+                    } else {
+                        getImageSrc(object[Object.keys(object)[theProp]], ke)
+                    }
+                } else  {
+                    if (object[Object.keys(object)[theProp]] === searchVal && !theArr.includes(searchVal)) {
+                        theArr.push(searchVal)
+                    }
+                }
             }
-            } else  {
-            if (object[Object.keys(object)[theProp]] === searchVal && !theArr.includes(searchVal)) {
-                theArr.push(searchVal)
-            }
-            }
-        }
         }
     }
     // You can return the array here
